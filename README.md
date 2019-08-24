@@ -1,3 +1,5 @@
+## This is  a solution of Payment to Multiple Merchant Account with Paypal
+
 ## Prerequisites
 <ul>
 <li>After cloning this repository, go to the root folder, run the following command/s,
@@ -9,10 +11,3 @@
 <li>Run <pre>php artisan key:generate</pre> </li>
 
 </ul>
-
-
-Video demonstrating the example https://www.youtube.com/watch?v=WOsXayVmnoc
-
-## Reference Post
-<a href="http://justlaravel.com/paypal-payment-gateway-integration-laravel/">http://justlaravel.com/paypal-payment-gateway-integration-laravel/
-</a>
