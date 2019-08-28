@@ -12,5 +12,7 @@ Route::get('status', 'PaymentController@getPaymentStatus');
 Auth::routes();
 
 Route::get('/invoices', 'HomeController@Invoices')->name('invoices');
+Route::get('/invoice/{id}', 'HomeController@SingleInvoice')->name('single-invoice');
+Route::get('/invoice-print/{id}', 'HomeController@PrintInvoice')->name('print-invoice');
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');

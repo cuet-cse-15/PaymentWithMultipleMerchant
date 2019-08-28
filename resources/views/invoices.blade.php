@@ -2,6 +2,27 @@
 
 
 @section('content')
+
+     <div class="w3-container">
+        @if ($message = Session::get('success'))
+        <div class="w3-panel w3-green w3-display-container">
+             <span onclick="this.parentElement.style.display='none'"
+                     class="w3-button w3-green w3-large w3-display-topright">&times;</span>
+             <p>{!! $message !!}</p>
+        </div>
+        <?php Session::forget('success');?>
+        @endif
+
+        @if ($message = Session::get('error'))
+        <div class="w3-panel w3-red w3-display-container">
+             <span onclick="this.parentElement.style.display='none'"
+                     class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+             <p>{!! $message !!}</p>
+        </div>
+        <?php Session::forget('error');?>
+        @endif
+
+  </div>
      <div class="alert alert-light alert-elevate" role="alert">
        <div class="alert-icon"><i class="flaticon-warning kt-font-brand"></i></div>
        <div class="alert-text">
@@ -194,10 +215,10 @@
                                 <td>{{$invoice->due}}</td>
                                 <td>
                                      <span>
-                                     <a title="Print" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+                                     <a href="/invoice-print/{{$invoice->id}}" target="_blank" title="Print" class="btn btn-sm btn-clean btn-icon btn-icon-md">
                                           <i class="la la-print"></i>
                                      </a>
-                                     <a title="Payment" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+                                     <a href="/invoice/{{$invoice->id}}" target="_blank" title="Payment" class="btn btn-sm btn-clean btn-icon btn-icon-md">
                                           <i class="la la-cc-visa"></i>
                                      </a>
                                      </span>

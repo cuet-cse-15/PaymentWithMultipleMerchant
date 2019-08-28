@@ -4,24 +4,7 @@
 </head>
 <body>
 
-     {{-- @php
-     $client_id_test='done..';
-     $secret_test='Success';
-     $path = base_path('.env');
 
-          if (file_exists($path)) {
-
-               file_put_contents($path, str_replace(
-        'APP_KEY='.$this->laravel['config']['app.key'], 'APP_KEY='.$key, file_get_contents($path)
-    ));
-
-
-          file_put_contents($path, str_replace(
-             'PAYPAL_CLIENT_ID='.$client_id_test,
-             'PAYPAL_SECRET='.$secret_test, file_get_contents($path)
-          ));
-          }
-     @endphp --}}
     <div class="w3-container">
         @if ($message = Session::get('success'))
         <div class="w3-panel w3-green w3-display-container">

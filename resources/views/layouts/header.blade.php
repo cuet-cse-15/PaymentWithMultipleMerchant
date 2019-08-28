@@ -46,6 +46,8 @@
     <link href="{{asset('assets/css/menu_light.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/brand_dark.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/aside_dark.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/invoice-v1.default.css')}}" rel="stylesheet" type="text/css" />
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!--end::Layout Skins -->
 
     <!--end::Layout Skins -->

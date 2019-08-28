@@ -19,6 +19,7 @@ use PayPal\Rest\ApiContext;
 use Redirect;
 use Session;
 use URL;
+use App\Invoice;
 
 class PaymentController extends Controller
 {
@@ -41,17 +42,7 @@ class PaymentController extends Controller
 
     }
 
-    public static function envUpdate($key, $value)
-    {
-        $path = base_path('.env');
 
-        if (file_exists($path)) {
-
-            file_put_contents($path, str_replace(
-                $key . '=' . env($key), $key . '=' . $value, file_get_contents($path)
-            ));
-        }
-    }
 
 
     public function index()
@@ -64,6 +55,13 @@ class PaymentController extends Controller
     }
     public function payWithpaypal(Request $request)
     {
+
+        $shop_info=ShopInfo(InvoiceInfo($request->id)->shop_id);
+        $this->envUpdate('PAYPAL_CLIENT_ID',$shop_info->client_id);
+        $this->envUpdate('PAYPAL_SECRET',$shop_info->client_secret);
+
+         \Session::put('invoice_id', $request->id);
+
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -167,13 +165,32 @@ class PaymentController extends Controller
         if ($result->getState() == 'approved') {
 
             \Session::put('success', 'Payment success');
-            return Redirect::to('/');
+
+            if ($invoice_id = Session::get('invoice_id')){
+                 $update=Invoice::where('id',$invoice_id)->update([
+                      'payment_method'=>'Paypal',
+                      'due'=>0,
+                 ]);
+            }
+            return Redirect::to('/invoices');
 
         }
 
         \Session::put('error', 'Payment failed');
-        return Redirect::to('/');
+        return Redirect::to('/invoices');
 
+    }
+
+    public static function envUpdate($key, $value)
+    {
+        $path = base_path('.env');
+
+        if (file_exists($path)) {
+
+            file_put_contents($path, str_replace(
+                $key . '=' . env($key), $key . '=' . $value, file_get_contents($path)
+            ));
+        }
     }
 
 }
